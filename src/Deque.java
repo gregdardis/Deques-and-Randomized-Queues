@@ -18,8 +18,11 @@ public class Deque<Item> implements Iterable<Item> {
     
     private int dequeSize;
     
-    /* Top of the stack */
+    /* Top of the Deque */
     private Node first;
+    
+    /* Bottom of the Deque */
+    private Node last;
     
     private class Node {
         private Item item;
@@ -62,6 +65,15 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null) {
             throw new IllegalArgumentException("Cannot add null item to deque.");
         }
+        Node oldLast = last;
+        last = new Node();
+        last.item = item;
+        last.next = null;
+        if (isEmpty()) {
+            first = last;
+        } else {
+            oldLast.next = last;
+        }
     }
     
     /**
@@ -71,21 +83,60 @@ public class Deque<Item> implements Iterable<Item> {
      */
     public Item removeFirst() {
         if (isEmpty()) {
-            throw new NoSuchElementException("Stack is empty");
+            throw new NoSuchElementException("Deque is empty");
         }
         Item item = first.item;
         first = first.next;
         dequeSize--;
+        if (isEmpty()) {
+            last = null;
+        }
         return item;
     }
     
-//    public Item removeLast()  {
-//        // remove and return the item from the end
-//    }
+    /**
+     * Removes an item from the end of the Linked List Deque.
+     * 
+     * @return  Item removed from Deque
+     */
+    public Item removeLast()  {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Deque is empty");
+        }
+        Node current = first;
+        while (current.next.next != null) {
+            current = current.next;
+        }
+        Item item = last.item;
+        last = current;
+        last.next = null;
+        return item;
+    }
     
-//    public Iterator<Item> iterator() {
-//        // return an iterator over items in order from front to end
-//    }
+    public Iterator<Item> iterator() {
+        return new DequeIterator();
+    }
+    
+    private class DequeIterator implements Iterator<Item> {
+        private Node current = first;
+        
+        public boolean hasNext() {
+            return current != null;
+        }
+        
+        public Item next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
+        
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
     
     public static void main(String[] args) {
         System.out.println("test");
