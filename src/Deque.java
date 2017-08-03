@@ -4,7 +4,8 @@ import java.util.NoSuchElementException;
 /**
  * The {@code Deque} class is a double-ended queue, which is a generalization of a stack and a queue
  * to which items can be added or removed from both the front or back of the data structure.
- * The Deque is implemented using a single Linked List, and can hold any element of type Item.
+ * The Deque is implemented using a single Linked List, and can hold any object 
+ * or primitive type, although you must use the wrapper class for primitives.
  * 
  * Supports methods such as checking if the Deque is empty, returning its size, and iterating
  * through the Deque from front to end.
