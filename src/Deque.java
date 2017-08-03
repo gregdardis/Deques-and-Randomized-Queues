@@ -27,6 +27,7 @@ public class Deque<Item> implements Iterable<Item> {
     private class Node {
         private Item item;
         private Node next;
+        private Node prev;
     }
     
     /**
@@ -35,10 +36,11 @@ public class Deque<Item> implements Iterable<Item> {
     public Deque() {
         dequeSize = 0;
         first = null;
+        last = null;
     }
  
     public boolean isEmpty() {
-        return first == null;
+        return dequeSize == 0;
     }
     
     public int size() {
@@ -57,23 +59,41 @@ public class Deque<Item> implements Iterable<Item> {
         Node oldFirst = first;
         first = new Node();
         first.item = item;
-        first.next = oldFirst;
+        first.prev = null;
+        if (isEmpty()) {
+            first.next = null;
+            last = first;
+        } else {
+            oldFirst.prev = first;
+            first.next = oldFirst;
+            if (size() == 1) {
+                last.prev = first;
+            }
+        }
         dequeSize++;
     }
     
+    /**
+     * Adds an item to the end of the Linked List Deque.
+     * 
+     * @param item  Item to add to the Deque
+     */
     public void addLast(Item item) {
         if (item == null) {
             throw new IllegalArgumentException("Cannot add null item to deque.");
         }
+        
         Node oldLast = last;
         last = new Node();
         last.item = item;
         last.next = null;
+        last.prev = oldLast;
         if (isEmpty()) {
             first = last;
         } else {
             oldLast.next = last;
         }
+        dequeSize++;
     }
     
     /**
@@ -90,6 +110,8 @@ public class Deque<Item> implements Iterable<Item> {
         dequeSize--;
         if (isEmpty()) {
             last = null;
+        } else {
+            first.prev = null;
         }
         return item;
     }
@@ -99,17 +121,18 @@ public class Deque<Item> implements Iterable<Item> {
      * 
      * @return  Item removed from Deque
      */
-    public Item removeLast()  {
+    public Item removeLast() {
         if (isEmpty()) {
-            throw new NoSuchElementException("Deque is empty");
-        }
-        Node current = first;
-        while (current.next.next != null) {
-            current = current.next;
+          throw new NoSuchElementException("Deque is empty");
         }
         Item item = last.item;
-        last = current;
-        last.next = null;
+        last = last.prev;
+        dequeSize--;
+        if (isEmpty()) {
+            first = null;
+        } else {
+            last.next = null;
+        }
         return item;
     }
     
@@ -118,7 +141,11 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     private class DequeIterator implements Iterator<Item> {
-        private Node current = first;
+        private Node current;
+        
+        public DequeIterator() {
+            this.current = first;
+        }
         
         public boolean hasNext() {
             return current != null;
@@ -139,7 +166,22 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     public static void main(String[] args) {
-        System.out.println("test");
+        int cycles = 30;
+        Deque<Integer> dequeInts = new Deque<Integer>();
+        for (int i = 0; i < cycles; i++) {
+//            dequeInts.addFirst(i);
+            dequeInts.addLast(i);
+        }
+//        for (int j = 0; j < (cycles + cycles); j++) {
+//            System.out.println(dequeInts.removeFirst());
+//            System.out.println(dequeInts.removeLast());
+//        }
+        
+        // iterator testing
+        Iterator<Integer> iterator = dequeInts.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
     
 }

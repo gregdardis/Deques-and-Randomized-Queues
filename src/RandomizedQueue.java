@@ -20,7 +20,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 //    }
 //    public Iterator<Item> iterator() {
         // return an independent iterator over items in random order
-    }
+//    }
 //    public static void main(String[] args) {
 //        // unit testing (optional)
 //    }
