@@ -133,7 +133,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
     }
     
-    public class RandomizedQueueIterator<Item> implements Iterator<Item> {
+    private class RandomizedQueueIterator<Item> implements Iterator<Item> {
         
         private int i = 0;
         
