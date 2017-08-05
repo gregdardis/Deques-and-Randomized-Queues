@@ -10,6 +10,7 @@ public class RandomizedQueueJUnitTests {
     RandomizedQueue<Integer> rQueue = new RandomizedQueue<>();
     
     private static final int SIZE_EMPTY = 0;
+    private static final int SIZE_TWO = 2;
     private static final int SIZE_FIVE = 5;
     
     @Test
@@ -35,5 +36,16 @@ public class RandomizedQueueJUnitTests {
         Iterator<Integer> iterator = rQueue.iterator();
         assertEquals(SIZE_FIVE, rQueue.size());
         assertFalse(iterator.equals(rQueue.iterator()));
+    }
+    
+    @Test
+    public void removeUntilEmpty() {
+        for (int i = 0; i < SIZE_TWO; i++) {
+            rQueue.enqueue(i);
+        }
+        for (int i = 0; i < SIZE_TWO; i++) {
+            rQueue.dequeue();
+        }
+        assertEquals(SIZE_EMPTY, rQueue.size());
     }
 } 

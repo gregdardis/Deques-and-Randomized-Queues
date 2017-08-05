@@ -3,6 +3,18 @@ import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.StdRandom;
 
+/**
+ * The {@code RandomizedQueue} class is a randomized queue, which is like a queue except
+ * items are dequeued at random, instead of from the front of the data structure.
+ * The Deque is implemented using an array, and can hold any object 
+ * or primitive type, although you must use the wrapper class for primitives.
+ * 
+ * Supports methods such as checking if the queue is empty, returning its size, and shuffling
+ * the queue before iterating through it's contents.
+ * 
+ * @author Greg Dardis
+ *
+ */
 public class RandomizedQueue<Item> implements Iterable<Item> {
     
     private Item[] items;
@@ -32,15 +44,26 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
         items[queueSize++] = item;
         if (queueSize == items.length) {
-            resize();
+            doubleArraySize();
         }
     }
     
     /**
      * Doubles the size of the items array.
      */
-    private void resize() {
+    private void doubleArraySize() {
         Item[] temp = (Item[]) new Object[queueSize * 2];
+        for (int i = 0; i < queueSize; i++) {
+            temp[i] = items[i];
+        }
+        items = temp;
+    }
+    
+    /**
+     * Halves the size of the items array.
+     */
+    private void halveArraySize() {
+        Item[] temp = (Item[]) new Object[queueSize / 2];
         for (int i = 0; i < queueSize; i++) {
             temp[i] = items[i];
         }
@@ -61,6 +84,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         items[randomIndex] = items[queueSize - 1];
         items[queueSize - 1] = null;
         queueSize--;
+        if (queueSize < (items.length / 4)) {
+            halveArraySize();
+        }
         return item;
     }
     
@@ -89,6 +115,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      * @return A randomized iterator for the queue
      */
     public Iterator<Item> iterator() {
+        // could use StdRandom.shuffle() here, didn't realize that existed
         shuffle();
         return new RandomizedQueueIterator();
     }
