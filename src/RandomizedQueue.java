@@ -1,3 +1,7 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+import edu.princeton.cs.algs4.StdRandom;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
     
@@ -44,19 +48,56 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     
     public Item dequeue() {
-        // remove and return a random item
+        if (isEmpty()) {
+             throw new NoSuchElementException("Queue is empty, can't dequeue");
+        }
+        
+        
     }
     
+    /**
+     * Samples a random item from the randomized queue. 
+     * Does not remove the item.
+     * 
+     * @return  Item sampled
+     */
     public Item sample() {
-        // return (but do not remove) a random item
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue is empty, can't sample");
+        }
+        int randomIndex = StdRandom.uniform(0, size());
+        Item item = items[randomIndex];
+        return item;
     }
     
+    // The order of two or more iterators to the same randomized queue must be mutually independent; each iterator must maintain its own random order
     public Iterator<Item> iterator() {
-         return an independent iterator over items in random order
+//         return an independent iterator over items in random order
+    }
+    
+    public class RandomizedQueueIterator<Item> implements Iterator<Item> {
+        public Item next() {
+            
+        }
+        
+        public boolean hasNext() {
+            
+        }
+        
+        public void remove() {
+            
+        }
     }
     
     public static void main(String[] args) {
-        // unit testing (optional)
+        int numberToAdd = 30;
+        int numberToSample = 5;
+        RandomizedQueue<Integer> rQueue = new RandomizedQueue<>();
+        for (int i = 0; i < numberToAdd; i++) {
+            rQueue.enqueue(i);
+        }
+        for (int i = 0; i < numberToSample; i++) {
+            System.out.println("Sample between 0 and " + numberToAdd + ": " + rQueue.sample());
+        }
     }
-    
 }

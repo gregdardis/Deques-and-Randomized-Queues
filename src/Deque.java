@@ -167,9 +167,9 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     public static void main(String[] args) {
-        int cycles = 30;
+        int numberToAdd = 30;
         Deque<Integer> dequeInts = new Deque<Integer>();
-        for (int i = 0; i < cycles; i++) {
+        for (int i = 0; i < numberToAdd; i++) {
 //            dequeInts.addFirst(i);
             dequeInts.addLast(i);
         }
