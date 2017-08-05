@@ -1,5 +1,4 @@
 import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
 
 /**
  * This class takes a command line integer numberOfStrings, reads in a sequence of strings
@@ -15,15 +14,14 @@ public class Permutation {
         
         RandomizedQueue<String> rQueue = new RandomizedQueue<String>();
         
-        String[] strs = StdIn.readAllStrings();
-        for (int i = 0; i < strs.length; i++) {
-            rQueue.enqueue(strs[i]);
+        while (!StdIn.isEmpty()) {
+            String str = StdIn.readString();
+            rQueue.enqueue(str);
         }
         
         int numberOfStrings = Integer.parseInt(args[0]);
-        
         for (int i = 0; i < numberOfStrings; i++) {
-            StdOut.println(rQueue.iterator().next());
+            System.out.println(rQueue.dequeue());
         }
     }
 }
