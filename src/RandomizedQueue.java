@@ -104,7 +104,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      * @return A randomized iterator for the queue
      */
     public Iterator<Item> iterator() {
-        // could use StdRandom.shuffle() here, didn't realize that existed
 //        shuffle();
         return new RandomizedQueueIterator();
     }
@@ -112,29 +111,42 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     /**
      * Shuffles the items array into random order.
      */
-    private void shuffle() {
-        Item[] temp = (Item[]) new Object[1];
-        for (int i = 0; i < queueSize - 2; i++) {
-            int j = StdRandom.uniform(i, queueSize);
-            temp[0] = items[j];
-            items[j] = items[i];
-            items[i] = temp[0];
-        }
-    }
+//    private void shuffle() {
+//        Item[] temp = (Item[]) new Object[1];
+//        for (int i = 0; i < queueSize - 2; i++) {
+//            int j = StdRandom.uniform(i, queueSize);
+//            temp[0] = items[j];
+//            items[j] = items[i];
+//            items[i] = temp[0];
+//        }
+//    }
     
     private class RandomizedQueueIterator<Item> implements Iterator<Item> {
         
-        private int i = 0;
+        private int copiedQueueSize = queueSize;
+        private Item[] copiedQueue;
+        
+        public RandomizedQueueIterator() {
+            copiedQueue = (Item[]) new Object[copiedQueueSize];
+            for (int i = 0; i < queueSize; i++) {
+                copiedQueue[i] = (Item) items[i];
+            }
+        }
         
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            return (Item) items[i++];
+            int randomIndex = StdRandom.uniform(copiedQueueSize);
+            Item item = copiedQueue[randomIndex];
+            copiedQueue[randomIndex] = copiedQueue[copiedQueueSize - 1];
+            copiedQueue[copiedQueueSize - 1] = null;
+            copiedQueueSize--;
+            return item;
         }
         
         public boolean hasNext() {
-            return i < (queueSize - 1);
+            return copiedQueueSize > 0;
         }
         
         public void remove() {
