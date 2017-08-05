@@ -170,15 +170,9 @@ public class Deque<Item> implements Iterable<Item> {
         int numberToAdd = 30;
         Deque<Integer> dequeInts = new Deque<Integer>();
         for (int i = 0; i < numberToAdd; i++) {
-//            dequeInts.addFirst(i);
             dequeInts.addLast(i);
         }
-//        for (int j = 0; j < (cycles + cycles); j++) {
-//            System.out.println(dequeInts.removeFirst());
-//            System.out.println(dequeInts.removeLast());
-//        }
         
-        // iterator testing
         Iterator<Integer> iterator = dequeInts.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());

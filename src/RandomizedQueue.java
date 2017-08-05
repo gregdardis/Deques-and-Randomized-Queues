@@ -64,6 +64,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return item;
     }
     
+    /**
+     * @return  Random item from RandomizedQueue
+     */
     private Item getRandomItem() {
         int randomIndex = StdRandom.uniform(0, size());
         return items[randomIndex];
@@ -82,7 +85,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return getRandomItem();
     }
     
-    // The order of two or more iterators to the same randomized queue must be mutually independent; each iterator must maintain its own random order
+    /**
+     * @return A randomized iterator for the queue
+     */
     public Iterator<Item> iterator() {
         shuffle();
         return new RandomizedQueueIterator();
