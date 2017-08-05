@@ -47,27 +47,39 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         items = temp;
     }
     
+    /**
+     * Removes a random item from the queue and returns it. 
+     * 
+     * @return  Random item removed
+     */
     public Item dequeue() {
         if (isEmpty()) {
              throw new NoSuchElementException("Queue is empty, can't dequeue");
         }
-        
-        
+        int randomIndex = StdRandom.uniform(0, size());
+        Item item = items[randomIndex];
+        items[randomIndex] = items[queueSize - 1];
+        items[queueSize - 1] = null;
+        queueSize--;
+        return item;
+    }
+    
+    private Item getRandomItem() {
+        int randomIndex = StdRandom.uniform(0, size());
+        return items[randomIndex];
     }
     
     /**
-     * Samples a random item from the randomized queue. 
+     * Samples a random item from the queue. 
      * Does not remove the item.
      * 
-     * @return  Item sampled
+     * @return  Random item sampled
      */
     public Item sample() {
         if (isEmpty()) {
             throw new NoSuchElementException("Queue is empty, can't sample");
         }
-        int randomIndex = StdRandom.uniform(0, size());
-        Item item = items[randomIndex];
-        return item;
+        return getRandomItem();
     }
     
     // The order of two or more iterators to the same randomized queue must be mutually independent; each iterator must maintain its own random order
@@ -90,11 +102,18 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     
     public static void main(String[] args) {
-        int numberToAdd = 30;
+        int numberToAdd = 20;
         int numberToSample = 5;
+        int numberToRemove = 5;
         RandomizedQueue<Integer> rQueue = new RandomizedQueue<>();
         for (int i = 0; i < numberToAdd; i++) {
             rQueue.enqueue(i);
+        }
+//        for (int i = 0; i < numberToSample; i++) {
+//            System.out.println("Sample between 0 and " + numberToAdd + ": " + rQueue.sample());
+//        }
+        for (int i = 0; i < numberToRemove; i++) {
+            System.out.println("Item removed: " + rQueue.dequeue());
         }
         for (int i = 0; i < numberToSample; i++) {
             System.out.println("Sample between 0 and " + numberToAdd + ": " + rQueue.sample());
