@@ -1,3 +1,10 @@
-***This is Assignment 2 from Princeton's Algorithms Part I course, made using Eclipse, version: Neon.2 Release (4.6.2)*.***
+e***This is Assignment 2 from Princeton's Algorithms Part I course, made using Eclipse, version: Neon.2 Release (4.6.2)*.***
 
-TODO: add command line instructions for launching this program, as well as for testing it with the given testing folder.
+# Command Line Instructions
+
+`cd src/`
+
+## Windows:  
+Compile:  
+ `javac -cp ".;../algs4.jar;../hamcrest-core-1.3.jar;../junit-4.12.jar" *.java`
+
