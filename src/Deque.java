@@ -167,7 +167,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     public static void main(String[] args) {
-        int numberToAdd = 30;
+        int numberToAdd = 10;
         Deque<Integer> dequeInts = new Deque<Integer>();
         
         System.out.println("Size before adding anything: " + dequeInts.size());
