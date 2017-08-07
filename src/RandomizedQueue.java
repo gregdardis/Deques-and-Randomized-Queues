@@ -146,23 +146,23 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         int numberToRemove = 5;
         
         RandomizedQueue<Integer> rQueue = new RandomizedQueue<>();
-        System.out.println("Add " + numberToAdd + " items to the randomized queue.");
+        System.out.println("Added " + numberToAdd + " items to the randomized queue, numbers from 0 to " + (numberToAdd - 1));
         for (int i = 0; i < numberToAdd; i++) {
             rQueue.enqueue(i);
         }
         
-        System.out.println("Remove " + numberToRemove + " random items from the queue.");
+        System.out.println("Removed " + numberToRemove + " random items from the queue.");
         for (int i = 0; i < numberToRemove; i++) {
             System.out.println("Item removed: " + rQueue.dequeue());
         }
         
-        System.out.println("Sample " + numberToSample + "random items but don't remove them");
+        System.out.println("\nSample " + numberToSample + " random items but don't remove them.");
         for (int i = 0; i < numberToSample; i++) {
             System.out.println("Sample between 0 and " + numberToAdd + ": " + rQueue.sample());
         }
         
         Iterator<Integer> iterator = rQueue.iterator();
-        System.out.println("Lets iterate through all the contents in random order.");
+        System.out.println("\nLets iterate through all the contents in random order.");
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
