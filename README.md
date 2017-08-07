@@ -31,8 +31,9 @@ Compile:
 Run:  
 `java -cp ".:../lib/algs4.jar:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar" Permutation <num-strings-to-print> < ../testing/<txt-file-name>`
 
-# Command Line Instructions for Deque
-(Simply replace Deque with RandomizedQueue to see that demonstration)
+# Command Line Instructions for Deque Demo
+(Simply replace Deque with RandomizedQueue to see a RandomizedQueue demonstration)  
+
 `cd src/`
 
 ## Windows:
