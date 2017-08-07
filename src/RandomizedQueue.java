@@ -104,22 +104,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      * @return A randomized iterator for the queue
      */
     public Iterator<Item> iterator() {
-//        shuffle();
         return new RandomizedQueueIterator();
     }
-    
-    /**
-     * Shuffles the items array into random order.
-     */
-//    private void shuffle() {
-//        Item[] temp = (Item[]) new Object[1];
-//        for (int i = 0; i < queueSize - 2; i++) {
-//            int j = StdRandom.uniform(i, queueSize);
-//            temp[0] = items[j];
-//            items[j] = items[i];
-//            items[i] = temp[0];
-//        }
-//    }
     
     private class RandomizedQueueIterator<Item> implements Iterator<Item> {
         

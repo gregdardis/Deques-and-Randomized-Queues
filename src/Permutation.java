@@ -5,8 +5,6 @@ import edu.princeton.cs.algs4.StdIn;
  * from standard input, and prints numberOfStrings of them, uniformly at random.
  * Utilizes RandomizedQueue to do this.
  * 
- * @author Greg Dardis
- *
  */
 public class Permutation {
 
