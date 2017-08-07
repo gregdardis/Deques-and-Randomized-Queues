@@ -19,17 +19,17 @@ Deque.java and RandomizedQueue.java both support `main()` methods that print sim
 
 ## Windows:  
 Compile:  
- `javac -cp ".;../algs4.jar;../hamcrest-core-1.3.jar;../junit-4.12.jar" *.java`
+ `javac -cp ".;../lib/algs4.jar;../lib/hamcrest-core-1.3.jar;../lib/junit-4.12.jar" *.java`
 
 Run:  
-`java -cp ".;../algs4.jar;../hamcrest-core-1.3.jar;../junit-4.12.jar" Permutation <num-strings-to-print> < <txt-file-name>`
+`java -cp ".;../lib/algs4.jar;../lib/hamcrest-core-1.3.jar;../lib/junit-4.12.jar" Permutation <num-strings-to-print> < ../testing/<txt-file-name>`
 
 ## Mac:
 Compile:  
- `javac -cp ".:../algs4.jar:../hamcrest-core-1.3.jar:../junit-4.12.jar" *.java`
+ `javac -cp ".:../lib/algs4.jar:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar" *.java`
 
 Run:  
-`java -cp ".:../algs4.jar:../hamcrest-core-1.3.jar:../junit-4.12.jar" Permutation <num-strings-to-print> < <txt-file-name>`
+`java -cp ".:../lib/algs4.jar:../lib/hamcrest-core-1.3.jar:../lib/junit-4.12.jar" Permutation <num-strings-to-print> < ../testing/<txt-file-name>`
 
 # Command Line Instructions for Deque
 (Simply replace Deque with RandomizedQueue to see that demonstration)
@@ -37,7 +37,7 @@ Run:
 
 ## Windows:
 Compile:  
-javac -cp ".;../algs4.jar" Deque.java
+javac -cp ".;../lib/algs4.jar" Deque.java
 
 Run:  
-java -cp ".;../algs4.jar" Deque
+java -cp ".;../lib/algs4.jar" Deque

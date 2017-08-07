@@ -169,14 +169,36 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         int numberToAdd = 30;
         Deque<Integer> dequeInts = new Deque<Integer>();
+        
+        System.out.println("Size before adding anything: " + dequeInts.size());
+        System.out.println("Deque is empty: " + dequeInts.isEmpty());
+        
         for (int i = 0; i < numberToAdd; i++) {
             dequeInts.addLast(i);
+            dequeInts.addFirst(i);
         }
         
+        System.out.println("\nSize after pushing " + numberToAdd + " ints to both front and back of deque: " + dequeInts.size());
+        System.out.println("Deque is empty? " + dequeInts.isEmpty());
+        
+        System.out.println("\nNow lets see all contents in the deque: ");
         Iterator<Integer> iterator = dequeInts.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
+        
+        System.out.println("Deque size still: " + dequeInts.size());
+        System.out.println("Deque is empty? " + dequeInts.isEmpty());
+        
+        System.out.println("\nNow remove the whole stack, half from the front and half from the back:");
+        
+        for (int i = 0; i < numberToAdd; i++) {
+            System.out.println(dequeInts.removeFirst());
+            System.out.println(dequeInts.removeLast());
+        }
+        
+        System.out.println("Deque size: " + dequeInts.size());
+        System.out.println("Deque is empty? " + dequeInts.isEmpty());
     }
     
 }
