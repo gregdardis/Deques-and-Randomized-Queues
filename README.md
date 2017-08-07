@@ -37,7 +37,15 @@ Run:
 
 ## Windows:
 Compile:  
-javac -cp ".;../lib/algs4.jar" Deque.java
+`javac -cp ".;../lib/algs4.jar" Deque.java`
 
 Run:  
-java -cp ".;../lib/algs4.jar" Deque
+`java -cp ".;../lib/algs4.jar" Deque`
+
+## Mac:  
+Compile:  
+`javac -cp ".:../lib/algs4.jar" Deque.java`
+
+Run:  
+`java -cp ".:../lib/algs4.jar" Deque`
+
